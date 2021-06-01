@@ -62,3 +62,54 @@ Verify if workers are bound to master
 ```
 multipass exec master-k8s -- sudo kubectl get nodes
 ```
+
+# Additional Steps
+
+1. Setup metrics server
+2. Deploy your first pod and check to make sure you can actually deploy something in this cluster
+3. Expose the service
+
+````
+# wait for 2 x minutes or so and check if it was successful
+kubectl top nodes 
+kubectl top po --all-namespaces
+
+# run nginx pod in your cluster
+kubectl run nginx --image=nginx --restart=Never
+
+# check to see if your pod is running
+kubectl get po
+```
+
+Create a file and deploy it.
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx
+  ports:
+    - port: 80
+      targetPort: 80
+  type: LoadBalancer
+```
+
+# How to access to Nginx
+
+At this moment, no way to access to application
+
+```
+multipass exec master-k8s bash
+sudo kubectl get svc
+curl localhost
+```
+
+Questions :
+* Solve the problem between pod and service
+* by what black magic can you use an on-prem load balancer?
+  If so, what is the product used?
+
+  
