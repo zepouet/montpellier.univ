@@ -1,3 +1,15 @@
+# Multipass
+
+k3s is a very efficient and lightweight fully compliant Kubernetes distribution. k3d is a utility designed to easily run k3s in Docker, it provides a simple CLI to create, run, delete a fully compliance Kubernetes cluster with 1 to n nodes.
+K3s includes:
+
+* Flannel: a very simple L2 overlay network that satisfies the Kubernetes requirements. This is a CNI plugin (Container Network Interface), such as Calico, Romana, Weave-net Flannel doesn’t support Kubernetes Network Policy, but it can be replaced by Calico (see next sections).
+* CoreDNS: a flexible, extensible DNS server that can serve as the Kubernetes cluster DNS
+* Traefik is a modern HTTP reverse proxy and load balancer. 
+* Klipper Load Balancer : Service load balancer that uses available host ports.
+* SQLite3: The storage backend used by default (also support MySQL, Postgres, and etcd3)
+* Containerd is a runtime container like Docker without the image build part
+
 # Installation Multipass
 
 ```
