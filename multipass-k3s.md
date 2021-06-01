@@ -69,7 +69,7 @@ multipass exec master-k8s -- sudo kubectl get nodes
 2. Deploy your first pod and check to make sure you can actually deploy something in this cluster
 3. Expose the service
 
-````
+```
 # wait for 2 x minutes or so and check if it was successful
 kubectl top nodes 
 kubectl top po --all-namespaces
@@ -82,7 +82,6 @@ kubectl get po
 ```
 
 Create a file and deploy it.
-
 ```
 apiVersion: v1
 kind: Service
