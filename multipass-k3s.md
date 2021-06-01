@@ -50,7 +50,7 @@ multipass exec master-k8s -- bash -c "curl -sfL https://get.k3s.io | sh -s - --n
 # Install Workers
 
 ```
-export K3S_IP_MASTER="https://$(multipass info master-k8s | grep "IPv4" | awk -F' ' '{print $2}'):6443"
+export K3S_IP_MASTER="$(multipass info master-k8s | grep "IPv4" | awk -F' ' '{print $2}'):6443"
 export K3S_TOKEN=$(multipass exec master-k8s -- /bin/bash -c "sudo cat /var/lib/rancher/k3s/server/node-token")
 
 multipass exec worker-1-k8s -- /bin/bash -c "curl -sfL https://get.k3s.io | K3S_TOKEN=${K3S_TOKEN} K3S_URL=https://${K3S_IP_MASTER} sh -"
@@ -111,4 +111,21 @@ Questions :
 * by what black magic can you use an on-prem load balancer?
   If so, what is the product used?
 
-  
+# Get the config file
+
+```
+mkdir $HOME/.k3s
+multipass mount $HOME master-k8s
+multipass exec master-k8s -- /bin/bash -c "sudo cp /etc/rancher/k3s/k3s.yaml /home/$USER/.k3s"
+multipass umount master-k8s
+curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+chmod +x kubectl
+```
+
+Change the IP from 127.0.0.1 to the right value (K3S_IP_MASTER)
+
+```
+export KUBECONFIG=${HOME}/.k3s/k3s.yaml
+```
+
+You could access to the cluster
