@@ -1,8 +1,15 @@
 # Multipass
 
-k3s is a very efficient and lightweight fully compliant Kubernetes distribution. k3d is a utility designed to easily run k3s in Docker, it provides a simple CLI to create, run, delete a fully compliance Kubernetes cluster with 1 to n nodes.
-K3s includes:
+K3s is an ultra-light version of Kubernetes developed by Rancher. It only requires 40MB of disk space and 512MB of RAM to start up because it is primarily intended for light equipment such as IoT, edge transport servers, RaspberryPi among others.
+It is a very efficient and lightweight fully compliant Kubernetes distribution. k3d is a utility designed to easily run k3s in Docker, it provides a simple CLI to create, run, delete a fully compliance Kubernetes cluster with 1 to n nodes.
 
+What does this distribution contain?
+All Kubernetes components (kube-apiserver, kube-controller-manager, kube-scheduler, kubelet, kube-proxy
+Docker is replaced by containerd.
+On the other hand, the plugins of the cloud providers and of storage have been removed.
+Sqlite3 replaces etcd.
+
+K3s includes:
 * Flannel: a very simple L2 overlay network that satisfies the Kubernetes requirements. This is a CNI plugin (Container Network Interface), such as Calico, Romana, Weave-net Flannel doesn’t support Kubernetes Network Policy, but it can be replaced by Calico (see next sections).
 * CoreDNS: a flexible, extensible DNS server that can serve as the Kubernetes cluster DNS
 * Traefik is a modern HTTP reverse proxy and load balancer. 
