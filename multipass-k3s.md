@@ -33,3 +33,31 @@ appliance:plexmediaserver                     20200812         Ubuntu Plex Media
 multipass launch --name master-k8s   --cpus 2 --mem 2048M --disk 5G
 multipass launch --name worker-1-k8s --cpus 2 --mem 2048M --disk 5G
 multipass launch --name worker-2-k8s --cpus 2 --mem 2048M --disk 5G
+````
+
+Check to list if nodes are availabe
+
+````
+multipass list
+````
+
+# Install Master 
+
+```
+multipass exec master-k8s -- bash -c "curl -sfL https://get.k3s.io | sh -s - --no-deploy=traefik"
+````
+
+# Install Workers
+
+```
+export K3S_IP_MASTER="https://$(multipass info master-k8s | grep "IPv4" | awk -F' ' '{print $2}'):6443"
+export K3S_TOKEN=$(multipass exec master-k8s -- /bin/bash -c "sudo cat /var/lib/rancher/k3s/server/node-token")
+
+multipass exec worker-1-k8s -- /bin/bash -c "curl -sfL https://get.k3s.io | K3S_TOKEN=${K3S_TOKEN} K3S_URL=https://${K3S_IP_MASTER} sh -"
+```
+
+Verify if workers are bound to master
+
+```
+multipass exec master-k8s -- sudo kubectl get nodes
+```
