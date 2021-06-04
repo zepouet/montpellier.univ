@@ -84,9 +84,8 @@ multipass exec master-k8s -- sudo kubectl get nodes
 
 # Additional Steps
 
-1. Setup metrics server
-2. Deploy your first pod and check to make sure you can actually deploy something in this cluster
-3. Expose the service
+1. Deploy your first pod and check to make sure you can actually deploy something in this cluster
+2. Expose the service
 
 ```
 # wait for 2 x minutes or so and check if it was successful
