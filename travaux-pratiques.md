@@ -17,7 +17,7 @@ Les crédentials pour le DockerHub seront à mettre dans des variables Gitlab-CI
 Contexte : Un développeur doit fournir une solution cloud native clef en main.
 Il est seul à développer donc pas de souci niveau droit à se partager entre personnes.
 
-* Créer un utilisateur <prefixe>-dev (nous prendrons xxx-dev pour exemple)
+* Créer un utilisateur prefixe-dev (nous prendrons xxx-dev pour exemple)
 * Créer un dépots PROJET dans Gitlab
   * PROJET : contenant le code source PHP, Node... Java... Python... Scala pour faire plaisir à votre responsable d'unité.
     * Droits MAINTENER pour xxx-dev
@@ -36,7 +36,7 @@ Il est seul à développer donc pas de souci niveau droit à se partager entre p
 Contexte : similer le fait d'avoir des utilisateurs différentes qui ont des droits différents.
 Typiquement une agence web pour laquelle vous allez mettre un dépôt avec les droits DEVELOPPER.
  
-* Créer deux utilisateurs <prefixe>-dev et <prefixe>-ops (nous prendrons xxx-dev et xxx-ops pour exemple)
+* Créer deux utilisateurs prefixe-dev et prefixe-ops (nous prendrons xxx-dev et xxx-ops pour exemple)
 * Créer deux dépots DEV / OPS dans Gitlab
   * DEV : contenant le code source PHP, Node... Java... Python... Scala pour faire plaisir à votre responsable d'unité.
     * Droits DEVELOPER pour xxx-dev
