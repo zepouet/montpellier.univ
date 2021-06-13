@@ -1,24 +1,27 @@
 # Règles
 
 Vous avez les choix entre ces deux propositions de TP.
-La seconde est plus compliquée et je serai donc plus tolérant à certaines erreurs pour remercier ce qui se lance dessus.
+La seconde est plus compliquée et je serai donc plus tolérant à certaines erreurs pour remercier ceux/celles qui se lancent dessus.
 Néanmoins vous ne serez pas mal noté si vous choisissez la première.
-Vous ne partez pas tous avec la même expérience.
+Vous ne partez pas tous avec la même expérience donc j'estime normal de vous donner le choix. Faites vous plaisir en fonction du temps aussi que vous avez.
 
 Choisissez une application quelqueconque dans votre langage favori qui affiche un "C'était le 26 mai 93" en page web et aussi sur la sortie standard.
-L'application sait lire une configMap (même namespace forcèment) pour afficher le nom de buteur. Je vous laisse chercher sur Google.
-Pas besoin de CSS. Le but est de respecter les https://12factor.net/fr/
+L'application sait lire une configMap (même namespace forcèment) pour afficher le nom de buteur. Je vous laisse chercher sur Google cette joli référence.
+Vous ne serez pas noter sur le CSS. Le but est de sortir du texte et du HTML brut en respectant les https://12factor.net/fr/.
+Vous développez donc le Dockerfile adéquat pour builder cette application.
+L'image sera poussée sur le DockerHub sur une compte que vous allez créer pour ce TP (à moins que vous en ayez un déjà).
+Les crédentials pour le DockerHub seront à mettre dans des variables Gitlab-CI.
 
 # PROPOSITION 1
 
-Contexte : Un développeur doit fournir une solution cloud native basé sur Docker / K8S. 
-Il est seul à développer donc pas de souci niveau droit. 
+Contexte : Un développeur doit fournir une solution cloud native clef en main.
+Il est seul à développer donc pas de souci niveau droit à se partager entre personnes.
 
 * Créer un utilisateur <prefixe>-dev (nous prendrons xxx-dev pour exemple)
 * Créer un dépots PROJET dans Gitlab
-  * PROJET : uniquement le code source PHP, Node... java
+  * PROJET : contenant le code source PHP, Node... Java... Python... Scala pour faire plaisir à votre responsable d'unité.
     * Droits MAINTENER pour xxx-dev
-    * Contient les fichiers suivants:
+    * Contient les fichiers suivants *a minima* :
       * .gitlab-ci.yaml
       * Dockerfile 
       * Service Account en Variable masquée 
@@ -35,16 +38,16 @@ Typiquement une agence web pour laquelle vous allez mettre un dépôt avec les d
  
 * Créer deux utilisateurs <prefixe>-dev et <prefixe>-ops (nous prendrons xxx-dev et xxx-ops pour exemple)
 * Créer deux dépots DEV / OPS dans Gitlab
-  * DEV : uniquement le code source PHP, Node... java
+  * DEV : contenant le code source PHP, Node... Java... Python... Scala pour faire plaisir à votre responsable d'unité.
     * Droits DEVELOPER pour xxx-dev
     * Droits MAINTENER pour xxx-ops
   * OPS 
     * Droits READER pour xxx-dev
     * Droits MAINTENER pour xxx-ops
-    Contient les fichiers suivants:
+    Contient les fichiers suivants *a minima* :
       * .gitlab-ci.yaml
       * Dockerfile 
-      * Service Account en Variable masquée limitée au namespace avec accès pour POD/DEPLOYMENT/CONFIGMAP uniquement
+      * Service Account en variable masquée 
 
 ## Remarques : 
 * Créer un service account limitée au namespace avec accès total pour POD/REPLICASET/DEPLOYMENT/CONFIGMAP uniquement. Pour réaliser ceci vous devvez livrer un fichier explicitant l'ensemble des commandes que vous devez jouer en étant admin du cluster K8S. Forcèment pour avoir le droits de créer des SA, il faut être les droits nécessaires.
@@ -55,6 +58,6 @@ Typiquement une agence web pour laquelle vous allez mettre un dépôt avec les d
  
 Tout n'est pas à faire sauf si vous en rêvez.
  
-* Mettre en place un Vault pour éviter de stocker le S.A. en tant que variable masquée dans Gitlab. Choix possible entre mozilla SOPS, Hashicorp Vault ou même https://github.com/bitnami-labs/sealed-secrets. 
+* Mettre en place un Vault pour éviter de stocker le ServiceAccount en tant que variable masquée dans Gitlab. Choix possible entre mozilla SOPS, Hashicorp Vault ou même https://github.com/bitnami-labs/sealed-secrets. 
 * Déployer une solution comme https://banzaicloud.com/docs/one-eye/logging-operator/ avec un Loki pour récupérer les logs de votre container. 
 * Déployer votre application avec Helm ou Kustomize.
