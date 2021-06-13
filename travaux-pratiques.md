@@ -15,7 +15,7 @@ Les crédentials pour le DockerHub seront à mettre dans des variables Gitlab-CI
 # Cluster K3S
 
 Utiliser le TP suivant pour le provisionner sur votre poste https://github.com/zepouet/montpellier.univ/blob/main/multipass-k3s.md
-OU même K3D si vous voulez. 
+OU même K3D si vous voulez. https://k3d.io/
 
 # Livrables
 
@@ -42,6 +42,7 @@ Il est seul à développer donc pas de souci niveau droit à se partager entre p
 * Créer un service account limitée au namespace avec accès total pour POD/REPLICASET/DEPLOYMENT/CONFIGMAP uniquement. Pour réaliser ceci vous devvez livrer un fichier explicitant l'ensemble des commandes que vous devez jouer en étant admin du cluster K8S. Forcèment pour avoir le droits de créer des SA, il faut être les droits nécessaires.
 * Ne pas utiliser DinD (Docker in Docker) pour builder l'image Docker dans .gitlab-ci. Choisir entre Buildah, Kaniko ou en utilisant la Socket Docker dans un runner même si cette solution la moins sécurisée est très pertinente dans une infra non mutualisée, non exposée à des tiers.
 * Bien faire attention à pousser les logs de votre application sur la sortie standard.
+* Exposer l'application sur un Ingress au choix (Nginx, Traefik, HaProxy...) sur l'URL **exam.do.local** (Spoofer l'IP dans /etc/hosts) sur du HTTP.
  
 # PROPOSTION 2
 
@@ -65,6 +66,7 @@ Typiquement une agence web pour laquelle vous allez mettre un dépôt avec les d
 * Créer un service account limitée au namespace avec accès total pour POD/REPLICASET/DEPLOYMENT/CONFIGMAP uniquement. Pour réaliser ceci vous devvez livrer un fichier explicitant l'ensemble des commandes que vous devez jouer en étant admin du cluster K8S. Forcèment pour avoir le droits de créer des SA, il faut être les droits nécessaires.
 * Ne pas utiliser DinD (Docker in Docker) pour builder l'image Docker dans .gitlab-ci. Choisir uniquement entre Buildah et Kaniko. De même il est interdit d'utiliser la Socket Docker car environnement mutualisée possible. Solution pas sécurisée.
 * Bien faire attention à pousser les logs de votre application sur la sortie standard. 
+* Exposer l'application sur un Ingress au choix (Nginx, Traefik, HaProxy...) sur l'URL **exam.do.local** (Spoofer l'IP dans /etc/hosts) sur du HTTP.
 
 ## Extra 
  
@@ -74,3 +76,4 @@ Tout n'est pas à faire sauf si vous en rêvez.
 * Déployer une solution comme https://banzaicloud.com/docs/one-eye/logging-operator/ avec un Loki pour récupérer les logs de votre container. 
 * Déployer votre application avec Helm ou Kustomize.
 * Fournir un script (Shell, Terraform, Ansible... ce que vous voulez) pour automatiser la créer d'un Service account avec les droits requis précédemment.
+
