@@ -17,6 +17,13 @@ Les crédentials pour le DockerHub seront à mettre dans des variables Gitlab-CI
 Utiliser le TP suivant pour le provisionner sur votre poste https://github.com/zepouet/montpellier.univ/blob/main/multipass-k3s.md
 OU même K3D si vous voulez. 
 
+# Livrables
+
+* Un dépôt Gitlab contenant le code mais aussi un fichier ARCHITECTURE.md expliquant succintement vos choix avec des captures d'écran.
+* Une démo prouvant que ceci fonctionne bien si vous le souhaitez pas obligatoire. Soyez par contre plus prévis dans les explications du fichier ARCHITECTURE.md
+
+Vous ne serez pas noté sur la quantité de texte écrite. Soyez succint et précis.
+
 # PROPOSITION 1
 
 Contexte : Un développeur doit fournir une solution cloud native clef en main.
