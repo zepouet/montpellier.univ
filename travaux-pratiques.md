@@ -73,3 +73,4 @@ Tout n'est pas à faire sauf si vous en rêvez.
 * Mettre en place un Vault pour éviter de stocker le ServiceAccount en tant que variable masquée dans Gitlab. Choix possible entre mozilla SOPS, Hashicorp Vault ou même https://github.com/bitnami-labs/sealed-secrets. 
 * Déployer une solution comme https://banzaicloud.com/docs/one-eye/logging-operator/ avec un Loki pour récupérer les logs de votre container. 
 * Déployer votre application avec Helm ou Kustomize.
+* Fournir un script (Shell, Terraform, Ansible... ce que vous voulez) pour automatiser la créer d'un Service account avec les droits requis précédemment.
