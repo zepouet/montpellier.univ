@@ -12,6 +12,11 @@ Vous développez donc le Dockerfile adéquat pour builder cette application.
 L'image sera poussée sur le DockerHub sur une compte que vous allez créer pour ce TP (à moins que vous en ayez un déjà).
 Les crédentials pour le DockerHub seront à mettre dans des variables Gitlab-CI.
 
+# Cluster K3S
+
+Utiliser le TP suivant pour le provisionner sur votre poste https://github.com/zepouet/montpellier.univ/blob/main/multipass-k3s.md
+OU même K3D si vous voulez. 
+
 # PROPOSITION 1
 
 Contexte : Un développeur doit fournir une solution cloud native clef en main.
