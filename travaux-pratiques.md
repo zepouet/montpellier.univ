@@ -48,8 +48,9 @@ Il est seul à développer donc pas de souci niveau droit à se partager entre p
 
 Contexte : similer le fait d'avoir des utilisateurs différentes qui ont des droits différents.
 Typiquement une agence web pour laquelle vous allez mettre un dépôt avec les droits DEVELOPPER.
- 
 * Créer deux utilisateurs prefixe-dev et prefixe-ops (nous prendrons xxx-dev et xxx-ops pour exemple)
+* Utiliser la notion de WebHook Gitlab pour déclencher le build du dépôt ops quand un commit est fait sur la branche master côté dev.
+Vous configurez ceci manuellement même si les API Gitlab permettent d'automatiser ceci.
 * Créer deux dépots DEV / OPS dans Gitlab
   * DEV : contenant le code source PHP, Node... Java... Python... Scala pour faire plaisir à votre responsable d'unité.
     * Droits DEVELOPER pour xxx-dev
@@ -61,6 +62,12 @@ Typiquement une agence web pour laquelle vous allez mettre un dépôt avec les d
       * .gitlab-ci.yaml avec trois stages : build, push et deploy
       * Dockerfile 
       * Service Account en variable masquée 
+
+D'un point de vue séquence pour vous aider.
+1. Un développeur commite sur xxx-dev
+2. un webhook déclenche le build côté xxx-ops
+3. le gitlab-ci côté ops clone le dépôt xxx-dev avec un token read-only sur le dépôt xxx-dev
+4. le gitlab-ci côté ops builde le code source avec le dockerfile présent côté ops
 
 ## Remarques : 
 * Créer un service account limitée au namespace avec accès total pour POD/REPLICASET/DEPLOYMENT/CONFIGMAP uniquement. Pour réaliser ceci vous devvez livrer un fichier explicitant l'ensemble des commandes que vous devez jouer en étant admin du cluster K8S. Forcèment pour avoir le droits de créer des SA, il faut être les droits nécessaires.
