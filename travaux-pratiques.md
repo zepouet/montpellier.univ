@@ -6,23 +6,23 @@ Néanmoins vous ne serez pas mal noté si vous choisissez la première.
 Vous ne partez pas tous avec la même expérience donc j'estime normal de vous donner le choix. Faites vous plaisir en fonction du temps aussi que vous avez.
 
 Choisissez une application quelqueconque dans votre langage favori qui affiche un "C'était le 26 mai 93" en page web et aussi sur la sortie standard.
-L'application sait lire une configMap (même namespace forcèment) pour afficher le nom de buteur. Je vous laisse chercher sur Google cette joli référence.
-Vous ne serez pas noter sur le CSS. Le but est de sortir du texte et du HTML brut en respectant les https://12factor.net/fr/.
+L'application sait lire une configMap (même namespace forcèment) pour afficher le nom du buteur. Etant donné que vous pouvez mettre un fichier de 1 Mo dans un configMap, vous pouvez même y mettre sa photo. Je vous laisse chercher sur Google cette joli référence.
+Vous ne serez pas noté sur le CSS. Le but est de sortir du texte et du HTML brut en respectant les https://12factor.net/fr/.
 Vous développez donc le Dockerfile adéquat pour builder cette application.
 L'image sera poussée sur le DockerHub sur une compte que vous allez créer pour ce TP (à moins que vous en ayez un déjà).
 Les crédentials pour le DockerHub seront à mettre dans des variables Gitlab-CI.
 
 # Cluster K3S
 
-Utiliser le TP suivant pour le provisionner sur votre poste https://github.com/zepouet/montpellier.univ/blob/main/multipass-k3s.md
+Utiliser le TP suivant pour le provisionner sur **votre** poste https://github.com/zepouet/montpellier.univ/blob/main/multipass-k3s.md
 OU même K3D si vous voulez. https://k3d.io/
 
 # Livrables
 
-* Un dépôt Gitlab contenant le code mais aussi un fichier ARCHITECTURE.md expliquant succintement vos choix avec des captures d'écran.
-* Une démo prouvant que ceci fonctionne bien si vous le souhaitez pas obligatoire. Soyez par contre plus prévis dans les explications du fichier ARCHITECTURE.md
+* Un dépôt Gitlab contenant le code mais aussi un fichier ARCHITECTURE.md expliquant succintement vos choix avec des captures d'écran. Le tout en Markdown.
+* Une démo prouvant que ceci fonctionne bien si vous le souhaitez mais ce n'est pas obligatoire. Soyez par contre plus prévis dans les explications du fichier ARCHITECTURE.md (vous pouvez en créer d'autres fichiers MD si besoin)
 
-Vous ne serez pas noté sur la quantité de texte écrite. Soyez succint et précis.
+Vous ne serez pas noté sur la quantité de texte écrite. Soyez succint et précis. Je vais lire 20 dossiers donc pensez aussi à moi.
 
 # PROPOSITION 1
 
@@ -34,7 +34,7 @@ Il est seul à développer donc pas de souci niveau droit à se partager entre p
   * PROJET : contenant le code source PHP, Node... Java... Python... Scala pour faire plaisir à votre responsable d'unité.
     * Droits MAINTENER pour xxx-dev
     * Contient les fichiers suivants *a minima* :
-      * .gitlab-ci.yaml
+      * .gitlab-ci.yaml avec trois stages : build, push et deploy
       * Dockerfile 
       * Service Account en Variable masquée 
 
@@ -58,7 +58,7 @@ Typiquement une agence web pour laquelle vous allez mettre un dépôt avec les d
     * Droits READER pour xxx-dev
     * Droits MAINTENER pour xxx-ops
     Contient les fichiers suivants *a minima* :
-      * .gitlab-ci.yaml
+      * .gitlab-ci.yaml avec trois stages : build, push et deploy
       * Dockerfile 
       * Service Account en variable masquée 
 
@@ -70,9 +70,9 @@ Typiquement une agence web pour laquelle vous allez mettre un dépôt avec les d
 
 ## Extra 
  
-Tout n'est pas à faire sauf si vous en rêvez.
+Tout n'est pas à faire sauf si vous ne dormez pas la nuit.
  
-* Mettre en place un Vault pour éviter de stocker le ServiceAccount en tant que variable masquée dans Gitlab. Choix possible entre mozilla SOPS, Hashicorp Vault ou même https://github.com/bitnami-labs/sealed-secrets. 
+* Mettre en place un Vault pour éviter de stocker le ServiceAccount en tant que variable masquée dans Gitlab. Choix possible entre mozilla SOPS, Hashicorp Vault ou même https://github.com/bitnami-labs/sealed-secrets (ou autre à justifier car il y a pléthore de solution)
 * Déployer une solution comme https://banzaicloud.com/docs/one-eye/logging-operator/ avec un Loki pour récupérer les logs de votre container. 
 * Déployer votre application avec Helm ou Kustomize.
 * Fournir un script (Shell, Terraform, Ansible... ce que vous voulez) pour automatiser la créer d'un Service account avec les droits requis précédemment.
